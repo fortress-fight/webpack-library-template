@@ -1,12 +1,21 @@
 {
-  "name": "webpack-js-template",
-  "version": "0.0.1",
-  "description": "webpack 为基础的 js 项目模板",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {}
+    "name": "webpack-js-template",
+    "version": "0.0.1",
+    "description": "webpack 为基础的 js 项目模板",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "commitizen": "^4.2.3",
+        "commitlint": "^12.1.1",
+        "cz-customizable": "^6.3.0"
+    },
+    "config": {
+        "commitizen": {
+            "path": "cz-customizable"
+        }
+    }
 }
