@@ -4,11 +4,12 @@
     "description": "webpack 为基础的 js 项目模板",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "prepare": "husky install"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@commitlint/config-angular": "^12.1.1",
         "commitizen": "^4.2.3",
         "commitlint": "^12.1.1",
         "cz-customizable": "^6.3.0"
@@ -17,5 +18,8 @@
         "commitizen": {
             "path": "cz-customizable"
         }
+    },
+    "dependencies": {
+        "husky": "^6.0.0"
     }
 }

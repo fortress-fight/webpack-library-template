@@ -38,6 +38,18 @@
     resolve-global "1.0.0"
     yargs "^16.2.0"
 
+"@commitlint/config-angular-type-enum@^12.1.4":
+  version "12.1.4"
+  resolved "https://mirrors.cloud.tencent.com/npm/@commitlint%2fconfig-angular-type-enum/-/config-angular-type-enum-12.1.4.tgz#02f9fd83cb13d1b40b0b2308147059ee0eae1ab5"
+  integrity sha512-C/F4X0VN56qpVq4HqiY2DuynF3BLtIFxM8Zwf3xvSONHGYVqmYG1cM6qezMxKtTIuy7A5yKK5aeSnaptw+VQgw==
+
+"@commitlint/config-angular@^12.1.1":
+  version "12.1.4"
+  resolved "https://mirrors.cloud.tencent.com/npm/@commitlint%2fconfig-angular/-/config-angular-12.1.4.tgz#960e394994052201c4ded34713092ec4ea44ce97"
+  integrity sha512-ptJpRjsHe0Cmh6Bm5tnC/RbR9p3/YMsZFhOzLEiv1sn2pBPsTSGIka1eO26XquLcw/0srKCGBNnUFFLO84qGPQ==
+  dependencies:
+    "@commitlint/config-angular-type-enum" "^12.1.4"
+
 "@commitlint/ensure@^12.1.4":
   version "12.1.4"
   resolved "https://mirrors.cloud.tencent.com/npm/@commitlint%2fensure/-/ensure-12.1.4.tgz#287ae2dcc5ccb086e749705b1bd9bdb99773056f"
@@ -790,6 +802,11 @@ hosted-git-info@^4.0.1:
   integrity sha512-c9OGXbZ3guC/xOlCg1Ci/VgWlwsqDv1yMQL1CWqXDL0hDjXuNcq0zuR4xqPSuasI3kqFDhqSyTjREz5gzq0fXg==
   dependencies:
     lru-cache "^6.0.0"
+
+husky@^6.0.0:
+  version "6.0.0"
+  resolved "https://mirrors.tencent.com/npm/husky/-/husky-6.0.0.tgz#810f11869adf51604c32ea577edbc377d7f9319e"
+  integrity sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ==
 
 iconv-lite@^0.4.24:
   version "0.4.24"
