@@ -59,6 +59,16 @@ yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
 <img src="<%= require("../src/asset/images/webpack.png") %>" alt="">
 ```
 
+## web-server
+
+添加插件
+
+```bash
+yarn add -D webpack-dev-server@4.6.0
+```
+
+通过 `webpack/config/webpack.devserver.js` 进行配置
+
 ## 优化
 
 1.  [noParse](https://webpack.docschina.org/configuration/module/#modulenoparse)
