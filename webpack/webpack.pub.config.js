@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-01 17:58:28
+ * @LastEditTime: 2021-12-01 19:01:38
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -32,6 +32,7 @@ module.exports = {
     },
     plugins: WEBPACK_PUB_PLUGINS,
     module: {
+        noParse: /asset\\plugins\\.+\.js$/,
         rules: WEBPACK_RULES,
     },
 };

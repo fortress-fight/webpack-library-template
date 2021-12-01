@@ -58,3 +58,9 @@ yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
 <img src="<%= IMG_PATH %>/webpack.png" alt="" />
 <img src="<%= require("../src/asset/images/webpack.png") %>" alt="">
 ```
+
+## 优化
+
+1.  [noParse](https://webpack.docschina.org/configuration/module/#modulenoparse)
+
+    通过 `noParse` 跳过对 `assets/plugin` 内部的 `js` 的解析操作
