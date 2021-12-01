@@ -33,3 +33,13 @@ yarn add -D cross-env@^7.0.3 webpack@^5.64.4  webpack-merge@^5.8.0 webpack-cli@^
 
 > html-webpack-plugin@^5.5.0
 通过 `webpack/config/webpack.page.js` 对页面进行管理
+
+### 样式文件处理
+
+#### CSS
+
+安装依赖
+
+```bash
+yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
+```
