@@ -2,7 +2,7 @@
  * @Description: webpack 的路径管理
  * @Author: F-Stone
  * @Date: 2021-12-01 13:33:32
- * @LastEditTime: 2021-12-01 18:48:02
+ * @LastEditTime: 2021-12-02 01:40:38
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -15,6 +15,7 @@ const PUBLIC_PATH = IS_DEV_MODULE ? "/" : "/";
 const ROOT_PATH = path.resolve(__dirname, "../../");
 const SRC_PATH = path.resolve(ROOT_PATH, "src");
 const OUT_PATH = path.resolve(ROOT_PATH, "dist");
+const STATIC_PATH = path.resolve(ROOT_PATH, "public");
 
 /* ---------------------------------- */
 /*           ENTRY_FILE_PATH          */
@@ -26,6 +27,7 @@ module.exports = {
     SRC_PATH,
     OUT_PATH,
     PUBLIC_PATH,
+    STATIC_PATH,
     OUT_FILE_PATH: {
         OUT_JS_PATH: "script",
         OUT_IMG_PATH: "images",
