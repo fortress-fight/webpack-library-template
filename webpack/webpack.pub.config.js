@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-01 16:55:44
+ * @LastEditTime: 2021-12-01 17:58:28
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -16,7 +16,7 @@ const {
 const { WEBPACK_PUB_PLUGINS } = require("./plugins/webpack-plugin-entry");
 const { WEBPACK_RULES } = require("./rules/webpack-rule-entry");
 
-const { OUT_JS_PATH } = OUT_FILE_PATH;
+const { OUT_JS_PATH, OUT_ASSET_PATH } = OUT_FILE_PATH;
 
 module.exports = {
     entry: path.resolve(SRC_PATH, "app.js"),
@@ -25,9 +25,13 @@ module.exports = {
         publicPath: PUBLIC_PATH,
         filename: path.posix.join(OUT_JS_PATH, `${HASH_NAME_RULE}.js`),
         chunkFilename: path.posix.join(OUT_JS_PATH, `${HASH_NAME_RULE}.js`),
+        assetModuleFilename: path.posix.join(
+            OUT_ASSET_PATH,
+            `${HASH_NAME_RULE}.js`
+        ),
     },
     plugins: WEBPACK_PUB_PLUGINS,
     module: {
-        rules: WEBPACK_RULES
-    }
+        rules: WEBPACK_RULES,
+    },
 };

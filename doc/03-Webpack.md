@@ -43,3 +43,11 @@ yarn add -D cross-env@^7.0.3 webpack@^5.64.4  webpack-merge@^5.8.0 webpack-cli@^
 ```bash
 yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
 ```
+
+通过 `webpack/rules/webpack-rule-style.js` 对进行管理
+
+### 静态文件处理
+
+静态文件包含：字体、 图片、 媒体
+处理方式：使用 webpack 自带的 [Rule.type](https://webpack.docschina.org/configuration/module/#ruletype) 进行处理
+通过 `webpack/rules/webpack-rule-asset.js` 对进行管理

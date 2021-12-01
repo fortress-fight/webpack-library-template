@@ -2,7 +2,7 @@
  * @Description: webpack 的路径管理
  * @Author: F-Stone
  * @Date: 2021-12-01 13:33:32
- * @LastEditTime: 2021-12-01 16:59:11
+ * @LastEditTime: 2021-12-01 17:53:37
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -28,6 +28,10 @@ module.exports = {
     PUBLIC_PATH,
     OUT_FILE_PATH: {
         OUT_JS_PATH: "script",
+        OUT_IMG_PATH: "images",
+        OUT_FONT_PATH: "fonts",
+        OUT_MEDIA_PATH: "medias",
+        OUT_ASSET_PATH: "assets"
     },
     ENTRY_FILE_PATH: {
         TEMPLATE_PATH
