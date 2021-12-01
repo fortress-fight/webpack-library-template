@@ -2,7 +2,7 @@
  * @Description: 项目结构模板输出管理
  * @Author: F-Stone
  * @Date: 2021-12-01 14:23:05
- * @LastEditTime: 2021-12-01 15:29:57
+ * @LastEditTime: 2021-12-01 18:48:57
  * @LastEditors: F-Stone
  */
 
@@ -14,7 +14,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const { PAGES_CONFIG } = require("../config/webpack.page");
-const { ENTRY_FILE_PATH, PUBLIC_PATH } = require("../config/webpack.path");
+const { ENTRY_FILE_PATH, PUBLIC_PATH, OUT_FILE_PATH } = require("../config/webpack.path");
 const { IS_DEV_MODULE, PROJECT_NAME } = require("../config/webpack.env");
 const { TEMPLATE_PATH } = ENTRY_FILE_PATH;
 
@@ -37,6 +37,7 @@ exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
             templateParameters: {
                 publicPath: PUBLIC_PATH,
                 PROJECT_NAME,
+                IMG_PATH: OUT_FILE_PATH.OUT_IMG_PATH,
                 ...param,
             },
             template: path.resolve(TEMPLATE_PATH, name + ".html"),

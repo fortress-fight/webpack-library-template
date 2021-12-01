@@ -51,3 +51,10 @@ yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
 静态文件包含：字体、 图片、 媒体
 处理方式：使用 webpack 自带的 [Rule.type](https://webpack.docschina.org/configuration/module/#ruletype) 进行处理
 通过 `webpack/rules/webpack-rule-asset.js` 对进行管理
+
+在 `pages/index.html` 中引入静态资源 (IMG_PATH 是通过 html-webpack-plugin 传入的参数):
+
+```html
+<img src="<%= IMG_PATH %>/webpack.png" alt="" />
+<img src="<%= require("../src/asset/images/webpack.png") %>" alt="">
+```
