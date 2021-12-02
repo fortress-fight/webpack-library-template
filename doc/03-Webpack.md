@@ -69,6 +69,14 @@ yarn add -D mini-css-extract-plugin@2.4.5
 <img src="<%= require("../src/asset/images/webpack.png") %>" alt="">
 ```
 
+#### Public 文件的导出
+
+在工作中常常有些静态文件不需要处理即可直接使用，通常存放在 `public` 文件夹下。 在本地开发时，可以通过 `devserver.static.directory` 进行配置，使该文件夹作为静态文件目录使用。 但在打包时，我们还需要将本地的 `public` 文件夹输出到 `dist` 目录中。 这时我们就需要 `copy-webpack-plugin`
+
+```bash
+yarn add -D copy-webpack-plugin@10.0.0
+```
+
 ## web-server
 
 添加插件
