@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-02 16:32:52
+ * @LastEditTime: 2021-12-03 14:00:37
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -25,7 +25,7 @@ module.exports = {
         index: { import: path.resolve(SRC_PATH, "app.js") },
     },
     resolve: {
-        alias: WEBPACK_ALIAS
+        alias: WEBPACK_ALIAS,
     },
     output: {
         path: OUT_PATH,
@@ -43,6 +43,8 @@ module.exports = {
         rules: WEBPACK_PUB_RULES,
     },
     optimization: {
+        runtimeChunk: "single",
+        moduleIds: "deterministic",
         splitChunks: {
             chunks: "all",
             name(module, chunks, cacheGroupKey) {
@@ -64,7 +66,13 @@ module.exports = {
                     return `${cacheGroupKey}-${moduleFileName}`;
                 }
             },
+            cacheGroups: {
+                vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all",
+                },
+            },
         },
-        runtimeChunk: "single",
     },
 };
