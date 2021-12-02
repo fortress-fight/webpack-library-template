@@ -86,3 +86,28 @@ yarn add -D webpack-dev-server@4.6.0
 ```
 
 通过 `webpack/config/webpack.devserver.js` 进行配置
+
+## resolve
+
+控制 `webpack` 的解析方式
+
+通过 `webpack\config\webpack.resolve.js` 控制
+
+-   `alias`
+
+    控制 `import` 路径的解析
+
+    建议配合 VSCode 插件 [Path Intellisense](https://marketplace.visualstudio.com/items?itemName=christian-kohler.path-intellisense) 使用
+
+    插件配置：
+
+    ```json
+    {
+        "javascript.suggest.paths": false,
+        "typescript.suggest.paths": false,
+        "path-intellisense.mappings": {
+            "@": "${workspaceRoot}/src"
+        },
+        "path-intellisense.autoSlashAfterDirectory": true,
+    }
+    ```

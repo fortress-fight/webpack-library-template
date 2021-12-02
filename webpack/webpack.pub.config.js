@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-02 14:43:04
+ * @LastEditTime: 2021-12-02 16:32:52
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -13,6 +13,7 @@ const {
     OUT_FILE_PATH,
     PUBLIC_PATH,
 } = require("./config/webpack.path");
+const { WEBPACK_ALIAS } = require("./config/webpack.resolve");
 const { WEBPACK_PUB_PLUGINS } = require("./plugins/webpack-plugin-entry");
 const { WEBPACK_PUB_RULES } = require("./rules/webpack-rule-entry");
 
@@ -22,6 +23,9 @@ module.exports = {
     target: "web",
     entry: {
         index: { import: path.resolve(SRC_PATH, "app.js") },
+    },
+    resolve: {
+        alias: WEBPACK_ALIAS
     },
     output: {
         path: OUT_PATH,
