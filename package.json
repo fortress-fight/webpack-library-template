@@ -19,6 +19,7 @@
         "cross-env": "^7.0.3",
         "css-loader": "^6.5.1",
         "cz-customizable": "^6.3.0",
+        "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.5.0",
         "mini-css-extract-plugin": "^2.4.5",
         "style-loader": "^3.3.1",

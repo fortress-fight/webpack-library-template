@@ -2,7 +2,7 @@
  * @Description: webpack server 配置
  * @Author: F-Stone
  * @Date: 2021-12-01 19:36:35
- * @LastEditTime: 2021-12-02 02:25:04
+ * @LastEditTime: 2021-12-02 15:47:39
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -37,7 +37,7 @@ exports.WEBPACK_DEV_SERVER = {
     allowedHosts: "all",
     historyApiFallback: {
         rewrites: [
-            { from: /404/, to: "/404.html" }
+            { from: /./, to: "/404.html" }
         ]
     }
 };

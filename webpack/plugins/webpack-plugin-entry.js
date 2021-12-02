@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-02 15:05:41
+ * @LastEditTime: 2021-12-02 15:47:51
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -10,6 +10,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 
 const { name } = require("../../package.json");
 const { HTML_PLUGINS } = require("./webpack-plugin-template");
@@ -24,6 +25,7 @@ const { OUT_STYLE_PATH } = OUT_FILE_PATH;
 
 exports.WEBPACK_PUB_PLUGINS = [
     ...HTML_PLUGINS,
+    new FriendlyErrorsWebpackPlugin(),
     new WebpackBuildNotifierPlugin({
         title: name,
         showDuration: true,
