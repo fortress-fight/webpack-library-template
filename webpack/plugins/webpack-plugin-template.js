@@ -2,7 +2,7 @@
  * @Description: 项目结构模板输出管理
  * @Author: F-Stone
  * @Date: 2021-12-01 14:23:05
- * @LastEditTime: 2021-12-02 17:24:31
+ * @LastEditTime: 2021-12-02 17:51:42
  * @LastEditors: F-Stone
  */
 
@@ -13,7 +13,7 @@ const path = require("path");
 /* ---------------------------------- */
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
-const { PAGES_CONFIG } = require("../config/webpack.page");
+const { PAGES_CONFIG, TEMPLATE_EXT } = require("../config/webpack.page");
 const {
     ENTRY_FILE_PATH,
     PUBLIC_PATH,
@@ -37,7 +37,7 @@ async function testTemplateIsExit(filename) {
 }
 
 exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
-    const templateFilename = path.resolve(TEMPLATE_PATH, name + ".html");
+    const templateFilename = path.resolve(TEMPLATE_PATH, name + TEMPLATE_EXT);
 
     testTemplateIsExit(templateFilename);
 
@@ -65,7 +65,7 @@ exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
             template: templateFilename,
             chunks: "all",
             excludeChunks: [],
-            filename: name + ".html",
+            filename: name + '.html',
             beautify: {
                 "indent-size": 4,
             },
