@@ -2,10 +2,10 @@
  * @Description: 项目的 app module 入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 13:43:22
- * @LastEditTime: 2021-12-02 16:36:44
+ * @LastEditTime: 2021-12-02 18:29:01
  * @LastEditors: F-Stone
  */
-import "@/style/index.css";
+import "@/style/index.scss";
 import imgPath from "@/asset/images/webpack.png";
 import fontPath from "@/asset/fonts/Montserrat-Light-6.otf";
 import videoPath from "@/asset/medias/pexels-mikhail-nilov.mp4";

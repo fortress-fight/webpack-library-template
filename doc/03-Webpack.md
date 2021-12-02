@@ -108,6 +108,5 @@ yarn add -D webpack-dev-server@4.6.0
         "path-intellisense.mappings": {
             "@": "${workspaceRoot}/src"
         },
-        "path-intellisense.autoSlashAfterDirectory": true,
     }
     ```
