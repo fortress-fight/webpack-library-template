@@ -68,9 +68,3 @@ yarn add -D webpack-dev-server@4.6.0
 ```
 
 通过 `webpack/config/webpack.devserver.js` 进行配置
-
-## 优化
-
-1.  [noParse](https://webpack.docschina.org/configuration/module/#modulenoparse)
-
-    通过 `noParse` 跳过对 `assets/plugin` 内部的 `js` 的解析操作
