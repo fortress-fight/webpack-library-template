@@ -2,7 +2,7 @@
  * @Description: 项目的 app module 入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 13:43:22
- * @LastEditTime: 2021-12-02 10:57:02
+ * @LastEditTime: 2021-12-02 13:49:36
  * @LastEditors: F-Stone
  */
 import "./style/index.css";

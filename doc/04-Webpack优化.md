@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-02 11:40:38
+ * @LastEditTime: 2021-12-02 14:03:27
  * @LastEditors: F-Stone
 -->
 
@@ -79,6 +79,35 @@
     }
     ```
 
+    补充：
+    -   如果希望控制分包后的文件名称，可以指定 name
+
+        ```javascript
+        {
+            // webpack.config.js
+            splitChunks: {
+                chunks: "all",
+                name(module, chunks, cacheGroupKey) {
+                    let moduleFileName = module
+                        .identifier()
+                        .split(/[\\/]/)
+                        .reduceRight((item) => item);
+                    moduleFileName = moduleFileName.slice(
+                        0,
+                        moduleFileName.lastIndexOf(".")
+                    );
+                    
+                    const allChunksNames = chunks
+                        .map((item) => item.name)
+                        .join("~");
+                    return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+                },
+            },
+        }
+        ```
+
+        但是由于输出相同名称的包会打包到一个 chunk 中，将会带来性能上的损耗，所以建议同时开始 `HASH_NAME`
+
 建议将 1 和 2 结合使用，已经明确知道的将在多个入口文件中使用或者体积比较大的依赖（此时可以配合 noParse 进一步优化），直接在入口处进行优化，其余的情况可以通过 `SplitChunksPlugin` 进一步的细化
 
 ### 分包策略的注意事项
@@ -99,3 +128,43 @@
 ```
 
 此方法是将公用模块的加载器单独分包后再进行共享，在打包的时候将会多出 `script/runtime.js` 文件
+
+### CSS 的分包
+
+首先选用 mini-css-extract-plugin 对 css 文件进行分包处理，但如果我们希望能够对 css 进行更加细化的处理时，可以配合 `splitChunks.cacheGroups` 进行使用
+
+例如：
+
+1.  希望所有 css 输出到同一个文件
+
+    ```javascript
+    // webpack.config.js
+    {
+        cacheGroups: {
+            styles: {
+                type: "css/mini-extract",
+                name: "styles_foo",
+                chunks: "all",
+                enforce: true,
+            },
+        }
+    }
+    ```
+
+2.  希望针对不同的 chunk 分配到不同文件
+
+    ```javascript
+    // webpack.config.js
+    {
+        cacheGroups: {
+            fooStyles: {
+                type: "css/mini-extract",
+                name: "styles_foo",
+                chunks: (chunk) => {
+                    return chunk.name === "foo";
+                },
+                enforce: true,
+            },
+        }
+    }
+    ```

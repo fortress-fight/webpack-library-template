@@ -2,7 +2,7 @@
  * @Description: webpack 的路径管理
  * @Author: F-Stone
  * @Date: 2021-12-01 13:33:32
- * @LastEditTime: 2021-12-02 01:40:38
+ * @LastEditTime: 2021-12-02 12:06:01
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -33,7 +33,8 @@ module.exports = {
         OUT_IMG_PATH: "images",
         OUT_FONT_PATH: "fonts",
         OUT_MEDIA_PATH: "medias",
-        OUT_ASSET_PATH: "assets"
+        OUT_ASSET_PATH: "assets",
+        OUT_STYLE_PATH: "style",
     },
     ENTRY_FILE_PATH: {
         TEMPLATE_PATH,

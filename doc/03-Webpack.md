@@ -46,6 +46,16 @@ yarn add -D css-loader@^6.5.1 style-loader@^3.3.1
 
 通过 `webpack/rules/webpack-rule-style.js` 对进行管理
 
+#### CSS 文件分包
+
+安装依赖
+
+```bash
+yarn add -D mini-css-extract-plugin@2.4.5
+```
+
+通过 `webpack\plugins\webpack-plugin-entry.js` 以及 `webpack\rules\webpack-rule-style.js` 进行配置 
+
 ### 静态文件处理
 
 静态文件包含：字体、 图片、 媒体
