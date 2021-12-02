@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-02 14:04:22
+ * @LastEditTime: 2021-12-02 14:43:04
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -21,15 +21,7 @@ const { OUT_JS_PATH, OUT_ASSET_PATH } = OUT_FILE_PATH;
 module.exports = {
     target: "web",
     entry: {
-        index: {
-            import: path.resolve(SRC_PATH, "app.js"),
-            dependOn: "share",
-        },
-        another: {
-            import: path.resolve(SRC_PATH, "another.js"),
-            dependOn: "share",
-        },
-        share: "lodash",
+        index: { import: path.resolve(SRC_PATH, "app.js") },
     },
     output: {
         path: OUT_PATH,
@@ -62,7 +54,11 @@ module.exports = {
                 const allChunksNames = chunks
                     .map((item) => item.name)
                     .join("~");
-                return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+                if (allChunksNames) {
+                    return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+                } else {
+                    return `${cacheGroupKey}-${moduleFileName}`;
+                }
             },
         },
         runtimeChunk: "single",

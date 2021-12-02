@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-02 14:03:27
+ * @LastEditTime: 2021-12-02 14:42:40
  * @LastEditors: F-Stone
 -->
 
@@ -168,3 +168,63 @@
         }
     }
     ```
+
+### 异步加载
+
+#### 动态导入 [import()](https://webpack.docschina.org/api/module-methods/#import)
+
+示例：
+
+```javascript
+function getComponent() {
+async function getComponent() {
+   const element = document.createElement('div');
+  const { default: _ } = await import('lodash');
+
+  return import('lodash')
+    .then(({ default: _ }) => {
+      const element = document.createElement('div');
+  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+      element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+
+      return element;
+    })
+    .catch((error) => 'An error occurred while loading the component');
+  return element;
+ }
+
+ getComponent().then((component) => {
+   document.body.appendChild(component);
+ });
+```
+
+1.  `Magic Comments`
+
+    内联注释使这一特性得以实现。 通过在 import 中添加注释，我们可以进行诸如给 chunk 命名或选择不同模式的操作。
+
+    示例：
+
+    ```javascript
+        // 单个目标
+    import(
+        /* webpackChunkName: "my-chunk-name" */
+        /* webpackMode: "lazy" */
+        /* webpackExports: ["default", "named"] */
+        'module'
+    );
+
+    // 多个可能的目标
+    import(
+        /* webpackInclude: /\.json$/ */
+        /* webpackExclude: /\.noimport\.json$/ */
+        /* webpackChunkName: "my-chunk-name" */
+        /* webpackMode: "lazy" */
+        /* webpackPrefetch: true */
+        /* webpackPreload: true */
+        `./locale/${language}`
+    );
+    ```
+
+    > 不正确地使用 webpackPreload 会有损性能，请谨慎使用。
+
