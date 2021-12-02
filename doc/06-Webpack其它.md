@@ -2,7 +2,7 @@
  * @Description: 对 webpack 补充信息
  * @Author: F-Stone
  * @Date: 2021-12-02 15:02:38
- * @LastEditTime: 2021-12-02 17:00:52
+ * @LastEditTime: 2021-12-02 17:07:32
  * @LastEditors: F-Stone
 -->
 
@@ -30,26 +30,26 @@
 
 ```javascript
 new webpack.ProvidePlugin({
-  $: 'jquery',
-  jQuery: 'jquery',
+    $: "jquery",
+    jQuery: "jquery",
 });
 ```
 
 ```javascript
 new webpack.ProvidePlugin({
-  _map: ['lodash', 'map'],
+    _map: ["lodash", "map"],
 });
 ```
 
 ```javascript
 new webpack.ProvidePlugin({
-  Vue: ['vue/dist/vue.esm.js', 'default'],
+    Vue: ["vue/dist/vue.esm.js", "default"],
 });
 ```
 
 ```javascript
 new webpack.ProvidePlugin({
-  'window.jQuery': 'jquery',
+    "window.jQuery": "jquery",
 });
 ```
 
@@ -66,16 +66,53 @@ new webpack.ProvidePlugin({
     未经 webpack 压缩过的代码：
 
     ```js
-        if (!true) {
-        console.log('Debug info');
-        }
-        if (true) {
-        console.log('Production log');
-        }
+    if (!true) {
+        console.log("Debug info");
+    }
+    if (true) {
+        console.log("Production log");
+    }
     ```
 
     经过压缩后：
 
     ```js
-        console.log('Production log');
+    console.log("Production log");
     ```
+
+## expose-loader
+
+如果希望讲一个 `module` 输出的模块定义为全局变量，可以使用 [expose-loader](https://webpack.docschina.org/loaders/expose-loader/)
+
+```javascript
+module.exports = {
+    module: {
+        rules: [
+            {
+                test: require.resolve("jquery"),
+                loader: "expose-loader",
+                options: {
+                    exposes: ["$", "jQuery"],
+                },
+            },
+            {
+                test: require.resolve("underscore"),
+                loader: "expose-loader",
+                options: {
+                    exposes: [
+                        "_.map|map",
+                        {
+                            globalName: "_.reduce",
+                            moduleLocalName: "reduce",
+                        },
+                        {
+                            globalName: ["_", "filter"],
+                            moduleLocalName: "filter",
+                        },
+                    ],
+                },
+            },
+        ],
+    },
+};
+```
