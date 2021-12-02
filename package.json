@@ -22,6 +22,7 @@
         "cz-customizable": "^6.3.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.5.0",
+        "husky": "^6.0.0",
         "mini-css-extract-plugin": "^2.4.5",
         "style-loader": "^3.3.1",
         "webpack": "^5.64.4",
@@ -37,7 +38,6 @@
         }
     },
     "dependencies": {
-        "husky": "^6.0.0",
         "lodash": "^4.17.21"
     }
 }
