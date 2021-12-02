@@ -2,7 +2,7 @@
  * @Description: 项目结构模板输出管理
  * @Author: F-Stone
  * @Date: 2021-12-01 14:23:05
- * @LastEditTime: 2021-12-01 18:48:57
+ * @LastEditTime: 2021-12-02 17:24:31
  * @LastEditors: F-Stone
  */
 
@@ -14,11 +14,33 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const { PAGES_CONFIG } = require("../config/webpack.page");
-const { ENTRY_FILE_PATH, PUBLIC_PATH, OUT_FILE_PATH } = require("../config/webpack.path");
+const {
+    ENTRY_FILE_PATH,
+    PUBLIC_PATH,
+    OUT_FILE_PATH,
+} = require("../config/webpack.path");
 const { IS_DEV_MODE, PROJECT_NAME } = require("../config/webpack.env");
+const { testFileIsExit } = require("../../utils/test-file-exit");
+const { createFile } = require("../../utils/create-file");
 const { TEMPLATE_PATH } = ENTRY_FILE_PATH;
 
+async function testTemplateIsExit(filename) {
+    try {
+        await testFileIsExit(filename);
+    } catch (error) {
+        await createFile(filename, "")
+            .then()
+            .catch((err) => {
+                console.log("err:", err);
+            });
+    }
+}
+
 exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
+    const templateFilename = path.resolve(TEMPLATE_PATH, name + ".html");
+
+    testTemplateIsExit(templateFilename);
+
     const DEFAULT_CONFIG = Object.assign(
         {
             title: PROJECT_NAME,
@@ -40,7 +62,7 @@ exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
                 IMG_PATH: OUT_FILE_PATH.OUT_IMG_PATH,
                 ...param,
             },
-            template: path.resolve(TEMPLATE_PATH, name + ".html"),
+            template: templateFilename,
             chunks: "all",
             excludeChunks: [],
             filename: name + ".html",
