@@ -2,7 +2,7 @@
  * @Description: 对 webpack 补充信息
  * @Author: F-Stone
  * @Date: 2021-12-02 15:02:38
- * @LastEditTime: 2021-12-02 15:26:01
+ * @LastEditTime: 2021-12-02 16:25:36
  * @LastEditors: F-Stone
 -->
 
@@ -14,3 +14,8 @@
     在打包结束后发动系统通知
 2.  `friendly-errors-webpack-plugin`
     优化打包时的输出信息
+
+## 优化
+
+1.  `webpack-bundle-analyzer`
+    输出包关联信息以方便优化

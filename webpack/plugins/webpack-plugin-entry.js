@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-02 15:47:51
+ * @LastEditTime: 2021-12-02 16:22:02
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -19,7 +19,8 @@ const {
     ROOT_PATH,
     OUT_PATH,
 } = require("../config/webpack.path");
-const { HASH_NAME_RULE } = require("../config/webpack.env");
+const { HASH_NAME_RULE, ANALYZER } = require("../config/webpack.env");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
 
@@ -49,6 +50,10 @@ exports.WEBPACK_PRO_PLUGINS = [
                 noErrorOnMissing: true,
             },
         ],
+    }),
+    new BundleAnalyzerPlugin({
+        analyzerMode: ANALYZER || "disabled",
+        generateStatsFile: ANALYZER
     }),
 ];
 exports.WEBPACK_DEV_PLUGINS = [];
