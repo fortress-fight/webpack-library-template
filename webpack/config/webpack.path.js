@@ -6,12 +6,12 @@
  * @LastEditors: F-Stone
  */
 const path = require("path");
-const { IS_DEV_MODULE } = require("./webpack.env");
+const { IS_DEV_MODE } = require("./webpack.env");
 
 /* ---------------------------------- */
 /*              BASE_PATH             */
 /* ---------------------------------- */
-const PUBLIC_PATH = IS_DEV_MODULE ? "/" : "/";
+const PUBLIC_PATH = IS_DEV_MODE ? "/" : "/";
 const ROOT_PATH = path.resolve(__dirname, "../../");
 const SRC_PATH = path.resolve(ROOT_PATH, "src");
 const OUT_PATH = path.resolve(ROOT_PATH, "dist");

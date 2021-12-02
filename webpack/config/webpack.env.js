@@ -10,13 +10,13 @@ const {name: PROJECT_NAME} = require("../../package.json");
 const HASH_NAME = true;
 const HASH_NAME_RULE = HASH_NAME ? "[name].[contenthash:8]" : "[name]"
 
-const IS_DEV_MODULE = process.env.NODE_ENV == "development";
+const IS_DEV_MODE = process.env.NODE_ENV == "development";
 const ANALYZER = process.env.ANALYZER;
 
 module.exports = {
     HASH_NAME,
     HASH_NAME_RULE,
-    IS_DEV_MODULE,
+    IS_DEV_MODE,
     PROJECT_NAME,
     ANALYZER
 }

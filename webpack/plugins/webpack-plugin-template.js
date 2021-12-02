@@ -15,14 +15,14 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const { PAGES_CONFIG } = require("../config/webpack.page");
 const { ENTRY_FILE_PATH, PUBLIC_PATH, OUT_FILE_PATH } = require("../config/webpack.path");
-const { IS_DEV_MODULE, PROJECT_NAME } = require("../config/webpack.env");
+const { IS_DEV_MODE, PROJECT_NAME } = require("../config/webpack.env");
 const { TEMPLATE_PATH } = ENTRY_FILE_PATH;
 
 exports.HTML_PLUGINS = PAGES_CONFIG.map(({ name, param, config }) => {
     const DEFAULT_CONFIG = Object.assign(
         {
             title: PROJECT_NAME,
-            minify: IS_DEV_MODULE
+            minify: IS_DEV_MODE
                 ? false
                 : {
                       collapseWhitespace: false,

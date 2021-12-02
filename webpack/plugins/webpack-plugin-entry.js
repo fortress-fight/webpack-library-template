@@ -21,7 +21,7 @@ const {
     ROOT_PATH,
     OUT_PATH,
 } = require("../config/webpack.path");
-const { HASH_NAME_RULE, ANALYZER, IS_DEV_MODULE } = require("../config/webpack.env");
+const { HASH_NAME_RULE, ANALYZER, IS_DEV_MODE } = require("../config/webpack.env");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
@@ -35,7 +35,7 @@ exports.WEBPACK_PUB_PLUGINS = [
     }),
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-        "process.env.IS_DEV_MODULE": JSON.stringify(IS_DEV_MODULE)
+        "process.env.IS_DEV_MODE": JSON.stringify(IS_DEV_MODE)
     }),
 ];
 
