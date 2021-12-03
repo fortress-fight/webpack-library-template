@@ -2,7 +2,7 @@
  * @Description: 静态资源的处理逻辑
  * @Author: F-Stone
  * @Date: 2021-12-01 17:02:02
- * @LastEditTime: 2021-12-01 18:06:29
+ * @LastEditTime: 2021-12-03 16:25:27
  * @LastEditors: F-Stone
  */
 
@@ -31,18 +31,21 @@ exports.assetRules = [
                 resourceQuery: /source/,
                 type: "asset/source",
                 generator: {
-                    filename: path.posix.join(OUT_IMG_PATH, `${HASH_NAME_RULE}[ext]`),
+                    filename: path.posix.join(
+                        OUT_IMG_PATH,
+                        `${HASH_NAME_RULE}[ext]`
+                    ),
                 },
             },
             {
+                resourceQuery: { not: [/source/, /resource/, /inline/] },
                 type: "asset",
-                parser: {
-                    dataUrlCondition: {
-                        maxSize: 1 * 1024, // 1kb
-                    },
-                },
+                parser: { dataUrlCondition: { maxSize: 1 * 1024 } },
                 generator: {
-                    filename: path.posix.join(OUT_IMG_PATH, `${HASH_NAME_RULE}[ext]`),
+                    filename: path.posix.join(
+                        OUT_IMG_PATH,
+                        `${HASH_NAME_RULE}[ext]`
+                    ),
                 },
             },
         ],
@@ -62,5 +65,10 @@ exports.assetRules = [
         generator: {
             filename: path.posix.join(OUT_MEDIA_PATH, `${HASH_NAME_RULE}[ext]`),
         },
+    },
+    // txt
+    {
+        test: /\.txt/,
+        type: "asset/source",
     },
 ];

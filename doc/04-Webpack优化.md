@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-02 16:37:05
+ * @LastEditTime: 2021-12-03 16:01:08
  * @LastEditors: F-Stone
 -->
 
@@ -80,6 +80,7 @@
     ```
 
     补充：
+
     -   如果希望控制分包后的文件名称，可以指定 name
 
         ```javascript
@@ -96,7 +97,7 @@
                         0,
                         moduleFileName.lastIndexOf(".")
                     );
-                    
+
                     const allChunksNames = chunks
                         .map((item) => item.name)
                         .join("~");
@@ -109,6 +110,62 @@
         但是由于输出相同名称的包会打包到一个 chunk 中，将会带来性能上的损耗，所以建议同时开始 `HASH_NAME`
 
 建议将 1 和 2 结合使用，已经明确知道的将在多个入口文件中使用或者体积比较大的依赖（此时可以配合 noParse 进一步优化），直接在入口处进行优化，其余的情况可以通过 `SplitChunksPlugin` 进一步的细化
+
+### 利用分包进行缓存优化
+
+我们可以将第三方库(`library`)（例如 `lodash` 或 `react`）提取到单独的 `vendor chunk` 文件中，利用 `client` 的长效缓存机制，命中缓存来消除请求，并减少向 `server` 获取资源，同时还能保证 `client` 代码和 `server` 代码版本一致。
+
+1.  将 `runtime` 代码拆分为一个单独的 `chunk`
+
+    ```javascript
+    // webpack.config.js
+    {
+        optimization: {
+            runtimeChunk: 'single',
+        },
+    }
+    ```
+
+2.  通过 `cacheGroups` 分理出不会频繁修改的代码
+
+    ```javascript
+    // webpack.config.js
+    {
+        optimization: {
+            splitChunks: {
+                cacheGroups: {
+                    vendor: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all',
+                    },
+                },
+            },
+        },
+    }
+    ```
+
+3.  通过模块标识符`module.id`进行区分
+
+    模块的打包时，当 `module.id` 发生变化的时候，将会导致重新打包。`module.id`默认是解析顺序进行增量变化。
+
+    我们可以做以下修改：
+
+    ```javascript
+    // webpack.config.js
+    {
+        optimization: {
+            // deterministic 被哈希转化成的小位数值模块名。
+            moduleIds: 'deterministic',
+        },
+    }
+    ```
+
+    注：
+    重新打包的判定方式：
+    -   `main` 入口 bundle 会随着自身的新增内容的修改，而发生变化。
+    -   `module.id` 分包 bundle 的变化，而发生变化。
+    -   `runtime` 编译 bundle 会因为现在包含一个新模块的引用，而发生变化。
 
 ### 分包策略的注意事项
 
@@ -206,12 +263,12 @@ async function getComponent() {
     示例：
 
     ```javascript
-        // 单个目标
+    // 单个目标
     import(
         /* webpackChunkName: "my-chunk-name" */
         /* webpackMode: "lazy" */
         /* webpackExports: ["default", "named"] */
-        'module'
+        "module"
     );
 
     // 多个可能的目标
@@ -227,3 +284,7 @@ async function getComponent() {
     ```
 
     > 不正确地使用 webpackPreload 会有损性能，请谨慎使用。
+
+## 自定义压缩行为
+
+> webpack v5 开箱即带有最新版本的 terser-webpack-plugin。如果你使用的是 webpack v5 或更高版本，同时希望自定义配置，那么仍需要安装 terser-webpack-plugin。
