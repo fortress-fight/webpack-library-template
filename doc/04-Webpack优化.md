@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-03 14:47:16
+ * @LastEditTime: 2021-12-03 16:01:08
  * @LastEditors: F-Stone
 -->
 
@@ -284,3 +284,7 @@ async function getComponent() {
     ```
 
     > 不正确地使用 webpackPreload 会有损性能，请谨慎使用。
+
+## 自定义压缩行为
+
+> webpack v5 开箱即带有最新版本的 terser-webpack-plugin。如果你使用的是 webpack v5 或更高版本，同时希望自定义配置，那么仍需要安装 terser-webpack-plugin。
