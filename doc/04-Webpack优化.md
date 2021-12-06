@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-06 10:36:54
+ * @LastEditTime: 2021-12-06 14:12:32
  * @LastEditors: F-Stone
 -->
 
@@ -293,3 +293,44 @@ async function getComponent() {
 ## thread-loader
 
 使用 `thread-loader` 对一些复制任务进行优化，比如：`js / sass` 的处理
+
+## tree shaking
+
+tree shaking 是一个术语，通常用于描述移除 JavaScript 上下文中的未引用代码(dead-code)
+
+### [sideEffects](https://webpack.docschina.org/guides/tree-shaking/)
+
+通过 package.json 的 "sideEffects" 属性作为标记，向 compiler 提供提示，表明项目中的哪些文件是 "pure(纯正 ES2015 模块)"，由此可以安全地删除文件中未使用的部分。
+
+使用 sideEffects 需要满足以下几点
+
+1.  使用 ES2015 模块语法（即 import 和 export）
+2.  确保没有编译器将您的 ES2015 模块语法转换为 CommonJS 的（顺带一提，这是现在常用的 @babel/preset-env 的默认行为）。
+    建议设置 babel
+
+    ```javascript
+    {
+        loader: "babel-loader",
+        options: {
+            cacheDirectory: true,
+            presets: [["@babel/preset-env", {modules: false}]],
+            plugins: ["@babel/plugin-transform-runtime"],
+        },
+    },
+    ```
+
+3.  `package.json` 中添加 `"sideEffects": false,`
+    **在实际使用的过程中，没有设置该选项，没有使用的部分同样会被移除**
+4.  使用生产模式，在压缩的过程中，被标记的部分将会被移除
+    通过 `terser-webpack-plugin` 中的 `unused` 配置实现
+
+在实际使用的使用，并没有经过单独的配置，在 `production` 中就已经实现了 `sideEffects` 行为
+
+#### 补充
+
+1.  将函数调用标记为无副作用
+    我们可以主动告诉 webpack 一个函数调用是无副作用的，只要通过 `/*#__PURE__*/` 注释。它可以被放到函数调用之前，用来标记它们是无副作用的(pure)。
+    
+    传到函数中的入参是无法被刚才的注释所标记，需要单独每一个标记才可以。
+    
+    如果一个没被使用的变量定义的初始值被认为是无副作用的（pure），**它会被标记为死代码，不会被执行且会被压缩工具清除掉。**这个行为需要设置 `optimization.innerGraph` 成 `true。`

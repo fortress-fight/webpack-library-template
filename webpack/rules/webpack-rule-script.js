@@ -2,7 +2,7 @@
  * @Description: script 的处理
  * @Author: F-Stone
  * @Date: 2021-12-02 17:59:03
- * @LastEditTime: 2021-12-06 10:13:49
+ * @LastEditTime: 2021-12-06 13:50:17
  * @LastEditors: F-Stone
  */
 
@@ -14,7 +14,7 @@ let dealJsUseLoader = [
         loader: "babel-loader",
         options: {
             cacheDirectory: true,
-            presets: ["@babel/preset-env"],
+            presets: [["@babel/preset-env", { modules: false }]],
             plugins: ["@babel/plugin-transform-runtime"],
         },
     },
