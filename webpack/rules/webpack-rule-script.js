@@ -2,7 +2,7 @@
  * @Description: script 的处理
  * @Author: F-Stone
  * @Date: 2021-12-02 17:59:03
- * @LastEditTime: 2021-12-06 13:50:17
+ * @LastEditTime: 2021-12-06 14:35:36
  * @LastEditors: F-Stone
  */
 
@@ -32,3 +32,12 @@ exports.jsRules = [
         use: dealJsUseLoader,
     },
 ];
+
+exports.tsRules = [
+    {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: [/(node_modules|bower_components)/],
+    },
+];
+
