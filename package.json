@@ -28,6 +28,7 @@
         "cssnano": "^5.0.12",
         "cz-customizable": "^6.3.0",
         "ejs-compiled-loader": "^3.1.0",
+        "fork-ts-checker-webpack-plugin": "^6.5.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.5.0",
         "husky": "^6.0.0",
