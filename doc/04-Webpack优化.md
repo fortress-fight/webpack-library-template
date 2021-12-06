@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-03 16:01:08
+ * @LastEditTime: 2021-12-06 10:36:54
  * @LastEditors: F-Stone
 -->
 
@@ -163,6 +163,7 @@
 
     注：
     重新打包的判定方式：
+
     -   `main` 入口 bundle 会随着自身的新增内容的修改，而发生变化。
     -   `module.id` 分包 bundle 的变化，而发生变化。
     -   `runtime` 编译 bundle 会因为现在包含一个新模块的引用，而发生变化。
@@ -288,3 +289,7 @@ async function getComponent() {
 ## 自定义压缩行为
 
 > webpack v5 开箱即带有最新版本的 terser-webpack-plugin。如果你使用的是 webpack v5 或更高版本，同时希望自定义配置，那么仍需要安装 terser-webpack-plugin。
+
+## thread-loader
+
+使用 `thread-loader` 对一些复制任务进行优化，比如：`js / sass` 的处理
