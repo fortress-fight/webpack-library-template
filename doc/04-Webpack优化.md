@@ -2,7 +2,7 @@
  * @Description: Webpack 优化方式记录
  * @Author: F-Stone
  * @Date: 2021-12-02 10:53:24
- * @LastEditTime: 2021-12-06 14:12:32
+ * @LastEditTime: 2021-12-06 16:14:17
  * @LastEditors: F-Stone
 -->
 
@@ -234,27 +234,26 @@
 示例：
 
 ```javascript
-function getComponent() {
 async function getComponent() {
-   const element = document.createElement('div');
-  const { default: _ } = await import('lodash');
+    const element = document.createElement("div");
+    const { default: _ } = await import("lodash");
 
-  return import('lodash')
-    .then(({ default: _ }) => {
-      const element = document.createElement('div');
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    return import("lodash")
+        .then(({ default: _ }) => {
+            const element = document.createElement("div");
+            element.innerHTML = _.join(["Hello", "webpack"], " ");
 
-      element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+            element.innerHTML = _.join(["Hello", "webpack"], " ");
 
-      return element;
-    })
-    .catch((error) => 'An error occurred while loading the component');
-  return element;
- }
+            return element;
+        })
+        .catch((error) => "An error occurred while loading the component");
+    return element;
+}
 
- getComponent().then((component) => {
-   document.body.appendChild(component);
- });
+getComponent().then((component) => {
+    document.body.appendChild(component);
+});
 ```
 
 1.  `Magic Comments`
@@ -330,7 +329,11 @@ tree shaking 是一个术语，通常用于描述移除 JavaScript 上下文中�
 
 1.  将函数调用标记为无副作用
     我们可以主动告诉 webpack 一个函数调用是无副作用的，只要通过 `/*#__PURE__*/` 注释。它可以被放到函数调用之前，用来标记它们是无副作用的(pure)。
-    
+
     传到函数中的入参是无法被刚才的注释所标记，需要单独每一个标记才可以。
-    
+
     如果一个没被使用的变量定义的初始值被认为是无副作用的（pure），**它会被标记为死代码，不会被执行且会被压缩工具清除掉。**这个行为需要设置 `optimization.innerGraph` 成 `true。`
+
+## fork-ts-checker-webpack-plugin
+
+> fork-ts-checker-webpack-plugin 对 ts-loader 优化

@@ -2,19 +2,24 @@
  * @Description: webpack server 配置
  * @Author: F-Stone
  * @Date: 2021-12-01 19:36:35
- * @LastEditTime: 2021-12-02 15:47:39
+ * @LastEditTime: 2021-12-06 18:10:45
  * @LastEditors: F-Stone
  */
 const path = require("path");
 
-const { PUBLIC_PATH, ROOT_PATH, STATIC_PATH, ENTRY_FILE_PATH } = require("./webpack.path");
+const {
+    PUBLIC_PATH,
+    ROOT_PATH,
+    STATIC_PATH,
+    ENTRY_FILE_PATH,
+} = require("./webpack.path");
 
 exports.WEBPACK_DEV_SERVER = {
     open: true,
     hot: true,
     compress: true,
     watchFiles: {
-        paths: [path.join(ENTRY_FILE_PATH.TEMPLATE_PATH, "*")]
+        paths: [path.join(ENTRY_FILE_PATH.TEMPLATE_PATH, "*")],
     },
     proxy: {},
     static: [
@@ -29,15 +34,13 @@ exports.WEBPACK_DEV_SERVER = {
                     path.resolve(ROOT_PATH, "dist"),
                 ],
             },
-        }
+        },
     ],
     client: {
         overlay: { errors: true, warnings: false },
     },
     allowedHosts: "all",
     historyApiFallback: {
-        rewrites: [
-            { from: /./, to: "/404.html" }
-        ]
-    }
+        rewrites: [{ from: /./, to: "/404.html" }],
+    },
 };
