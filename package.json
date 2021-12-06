@@ -29,6 +29,8 @@
         "cssnano": "^5.0.12",
         "cz-customizable": "^6.3.0",
         "ejs-compiled-loader": "^3.1.0",
+        "eslint": "^8.4.0",
+        "eslint-webpack-plugin": "^3.1.1",
         "fork-ts-checker-webpack-plugin": "^6.5.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.5.0",

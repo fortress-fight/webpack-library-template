@@ -2,7 +2,7 @@
  * @Description: 对 webpack 补充信息
  * @Author: F-Stone
  * @Date: 2021-12-02 15:02:38
- * @LastEditTime: 2021-12-06 14:17:51
+ * @LastEditTime: 2021-12-06 18:21:47
  * @LastEditors: F-Stone
 -->
 
@@ -13,7 +13,13 @@
 1.  `webpack-build-notifier`
     在打包结束后发动系统通知
 2.  `friendly-errors-webpack-plugin`
-    优化打包时的输出信息
+    优化打包时的输出信息，此时可以将 webpack 的输出关闭
+
+    ```js
+    // webpack.config.js
+    // preset: minimal
+    {stats: { preset: "none", colors: true },}
+    ```
 
 ## 优化
 

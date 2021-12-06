@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-06 17:28:31
+ * @LastEditTime: 2021-12-06 17:59:43
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -13,6 +13,9 @@ const WebpackBuildNotifierPlugin = require("webpack-build-notifier");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 const { name } = require("../../package.json");
 const { HTML_PLUGINS } = require("./webpack-plugin-template");
@@ -27,9 +30,8 @@ const {
     ANALYZER,
     IS_DEV_MODE,
     DLL_NAME_RULE,
+    USE_THREAD_LOADER,
 } = require("../config/webpack.env");
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const { DLL_PLUGINS } = require("./webpack-plugin-dll");
 
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
@@ -46,6 +48,13 @@ exports.WEBPACK_PUB_PLUGINS = [
         "process.env.IS_DEV_MODE": JSON.stringify(IS_DEV_MODE),
     }),
     ...DLL_PLUGINS,
+    new ESLintPlugin({
+        context: ROOT_PATH,
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
+        emitWarning: false,
+        lintDirtyModulesOnly: true,
+        threads: USE_THREAD_LOADER,
+    }),
 ];
 
 exports.WEBPACK_PRO_PLUGINS = [
