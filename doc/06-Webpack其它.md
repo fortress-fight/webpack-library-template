@@ -2,7 +2,7 @@
  * @Description: 对 webpack 补充信息
  * @Author: F-Stone
  * @Date: 2021-12-02 15:02:38
- * @LastEditTime: 2021-12-03 16:20:41
+ * @LastEditTime: 2021-12-06 14:17:51
  * @LastEditors: F-Stone
 -->
 
@@ -195,3 +195,9 @@ context.keys().forEach((fillName) => {
 ## [每个入口使用多种文件类型](https://webpack.docschina.org/guides/entry-advanced/)
 
 每个入口使用多种文件类型，可以实现将 CSS 和 JavaScript（和其他）文件分离在不同的 bundle。
+
+## 需要进一步了解的内容
+
+1.  [开发 - Vagrant](https://webpack.docschina.org/guides/development-vagrant/)
+
+    使用虚拟机开发环境配合 Nginx 实现对线上环境的模拟开发
