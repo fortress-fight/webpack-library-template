@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-06 16:12:02
+ * @LastEditTime: 2021-12-06 17:28:31
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -20,14 +20,17 @@ const {
     OUT_FILE_PATH,
     ROOT_PATH,
     OUT_PATH,
+    OUT_DLL_PATH,
 } = require("../config/webpack.path");
 const {
     HASH_NAME_RULE,
     ANALYZER,
     IS_DEV_MODE,
+    DLL_NAME_RULE,
 } = require("../config/webpack.env");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const { DLL_PLUGINS } = require("./webpack-plugin-dll");
 
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
 
@@ -42,6 +45,7 @@ exports.WEBPACK_PUB_PLUGINS = [
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
         "process.env.IS_DEV_MODE": JSON.stringify(IS_DEV_MODE),
     }),
+    ...DLL_PLUGINS,
 ];
 
 exports.WEBPACK_PRO_PLUGINS = [
@@ -70,3 +74,18 @@ exports.WEBPACK_PRO_PLUGINS = [
 ];
 
 exports.WEBPACK_DEV_PLUGINS = [new ForkTsCheckerWebpackPlugin()];
+
+exports.WEBPACK_DLL_PLUGINS = [
+    new WebpackBuildNotifierPlugin({ title: name, showDuration: true }),
+    new FriendlyErrorsWebpackPlugin(),
+    new CleanWebpackPlugin(),
+    new webpack.ProgressPlugin(),
+    new MiniCssExtractPlugin({
+        filename: path.posix.join(OUT_STYLE_PATH, `${DLL_NAME_RULE}.css`),
+        chunkFilename: path.posix.join(OUT_STYLE_PATH, `${DLL_NAME_RULE}.css`),
+    }),
+    new webpack.DllPlugin({
+        name: DLL_NAME_RULE,
+        path: path.resolve(OUT_DLL_PATH, "[name]_manifest.json"),
+    }),
+];
