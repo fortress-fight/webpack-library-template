@@ -2,7 +2,7 @@
  * @Description: script 的处理
  * @Author: F-Stone
  * @Date: 2021-12-02 17:59:03
- * @LastEditTime: 2021-12-06 13:50:17
+ * @LastEditTime: 2021-12-06 16:16:12
  * @LastEditors: F-Stone
  */
 
@@ -30,5 +30,17 @@ exports.jsRules = [
         exclude: [/(node_modules|bower_components)/, /asset\\plugins\\.+\.js$/],
         include: SRC_PATH,
         use: dealJsUseLoader,
+    },
+];
+
+exports.tsRules = [
+    {
+        test: /\.tsx?$/,
+        loader: "ts-loader",
+        exclude: [/(node_modules|bower_components)/],
+        options: {
+            // disable type checker - we will use it in fork plugin
+            transpileOnly: IS_DEV_MODE,
+        },
     },
 ];

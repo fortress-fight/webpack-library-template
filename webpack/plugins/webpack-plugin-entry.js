@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-02 17:13:21
+ * @LastEditTime: 2021-12-06 16:12:02
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -21,8 +21,13 @@ const {
     ROOT_PATH,
     OUT_PATH,
 } = require("../config/webpack.path");
-const { HASH_NAME_RULE, ANALYZER, IS_DEV_MODE } = require("../config/webpack.env");
+const {
+    HASH_NAME_RULE,
+    ANALYZER,
+    IS_DEV_MODE,
+} = require("../config/webpack.env");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
 
@@ -35,7 +40,7 @@ exports.WEBPACK_PUB_PLUGINS = [
     }),
     new webpack.DefinePlugin({
         "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-        "process.env.IS_DEV_MODE": JSON.stringify(IS_DEV_MODE)
+        "process.env.IS_DEV_MODE": JSON.stringify(IS_DEV_MODE),
     }),
 ];
 
@@ -63,4 +68,5 @@ exports.WEBPACK_PRO_PLUGINS = [
         generateStatsFile: ANALYZER,
     }),
 ];
-exports.WEBPACK_DEV_PLUGINS = [];
+
+exports.WEBPACK_DEV_PLUGINS = [new ForkTsCheckerWebpackPlugin()];

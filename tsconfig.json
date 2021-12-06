@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": false,
+        "resolveJsonModule": true,
+        "jsx": "react",
+        "importHelpers": true,
+        "rootDir": "./src/",
+        "outDir": "./dist/",
+        "baseUrl": "./",
+        "removeComments": false,
+        "experimentalDecorators": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "paths": { "@/*": ["src/*"] },
+        "sourceMap": true,
+        "allowJs": true,
+        "checkJs": true,
+        "moduleResolution": "node"
+    },
+    "include": ["src/**/*", "tests/**/*"]
+}
