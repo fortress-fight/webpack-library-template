@@ -8,7 +8,8 @@
         "start": "cross-env NODE_ENV=development webpack serve",
         "build": "cross-env NODE_ENV=production webpack",
         "build:analyzer": "cross-env ANALYZER=server NODE_ENV=production webpack",
-        "dll": "cross-env PROJECT_PRO_DLL=true webpack"
+        "dll": "cross-env PROJECT_PRO_DLL=true webpack",
+        "lint": "eslint --fix --config ./.eslintrc.js --ignore-path ./.eslintignore src/ & npx stylelint --config ./stylelint.config.js --fix src/**/*.{css,scss,sass}"
     },
     "author": "",
     "license": "ISC",
@@ -39,6 +40,7 @@
         "friendly-errors-webpack-plugin": "^1.7.0",
         "html-webpack-plugin": "^5.5.0",
         "husky": "^6.0.0",
+        "lint-staged": "^12.1.2",
         "mini-css-extract-plugin": "^2.4.5",
         "postcss": "^8.4.4",
         "postcss-aspect-ratio-mini": "^1.1.0",
@@ -74,5 +76,13 @@
     "dependencies": {
         "@babel/runtime": "^7.16.3",
         "lodash": "^4.17.21"
+    },
+    "lint-staged": {
+        "src/**/*.{js,ts}": [
+            "eslint --fix --config ./.eslintrc.js --ignore-path ./.eslintignore"
+        ],
+        "src/**/*.{css,scss,sass}": [
+            "npx stylelint --config ./stylelint.config.js --fix"
+        ]
     }
 }
