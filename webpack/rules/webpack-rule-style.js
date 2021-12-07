@@ -2,7 +2,7 @@
  * @Description: webpack style 处理
  * @Author: F-Stone
  * @Date: 2021-12-01 16:49:04
- * @LastEditTime: 2021-12-06 10:33:13
+ * @LastEditTime: 2021-12-08 00:51:56
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -103,13 +103,17 @@ exports.cssRules = [
     },
 ];
 
+const DealSassUseLoader = IS_DEV_MODE
+    ? [...CssLoaders, SassLoader]
+    : [...CssLoaders, PostcssLoader, SassLoader];
+
+if (USE_THREAD_LOADER) {
+    DealSassUseLoader.unshift("thread-loader");
+}
+
 exports.sassRules = [
     {
         test: /\.s[ac]ss$/i,
-        use: IS_DEV_MODE
-            ? USE_THREAD_LOADER
-                ? [...CssLoaders, SassLoader]
-                : ["thread-loader", ...CssLoaders, SassLoader]
-            : [...CssLoaders, SassLoader, PostcssLoader],
+        use: DealSassUseLoader,
     },
 ];

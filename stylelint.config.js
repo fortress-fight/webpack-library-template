@@ -2,7 +2,7 @@
  * @Description: style config
  * @Author: F-Stone
  * @Date: 2021-12-07 10:20:17
- * @LastEditTime: 2021-12-07 11:31:42
+ * @LastEditTime: 2021-12-08 01:40:23
  * @LastEditors: F-Stone
  */
 
@@ -12,7 +12,7 @@ module.exports = {
         "stylelint-no-unsupported-browser-features",
         "stylelint-declaration-block-no-ignored-properties",
     ],
-    ignoreFiles: ["**/*.js", "**/*.ts"],
+    ignoreFiles: ["!src/**/*.!(js|ts)"],
     rules: {
         "plugin/no-unsupported-browser-features": [
             true,

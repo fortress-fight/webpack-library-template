@@ -2,7 +2,7 @@
  * @Description: script 的处理
  * @Author: F-Stone
  * @Date: 2021-12-02 17:59:03
- * @LastEditTime: 2021-12-06 16:16:12
+ * @LastEditTime: 2021-12-08 00:42:13
  * @LastEditors: F-Stone
  */
 
@@ -20,7 +20,7 @@ let dealJsUseLoader = [
     },
 ];
 
-if (USE_THREAD_LOADER && IS_DEV_MODE) {
+if (USE_THREAD_LOADER) {
     dealJsUseLoader.unshift("thread-loader");
 }
 
