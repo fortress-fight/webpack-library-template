@@ -2,7 +2,7 @@
  * @Description: 添加使用 webpack.DllPlugin 打包出的文件需要的 Plugin
  * @Author: F-Stone
  * @Date: 2021-12-06 16:46:07
- * @LastEditTime: 2021-12-06 17:01:19
+ * @LastEditTime: 2021-12-09 18:54:56
  * @LastEditors: F-Stone
  */
 const fs = require("fs");
@@ -17,27 +17,36 @@ const {
 } = require("../config/webpack.path");
 const { OUT_JS_PATH, OUT_STYLE_PATH } = OUT_FILE_PATH;
 
-const Dll_JSON = fs
-    .readdirSync(OUT_DLL_PATH)
-    .filter((e) => e.match(/.*\.json$/gi))
-    .map((f) => {
-        return new webpack.DllReferencePlugin({
-            manifest: require(path.resolve(OUT_DLL_PATH, f)),
-        });
-    });
+let DLL_PLUGINS = [];
 
-exports.DLL_PLUGINS = [
-    ...Dll_JSON,
-    new AddAssetHtmlPlugin([
-        {
-            filepath: path.resolve(OUT_DLL_PATH, OUT_JS_PATH, "*.js"),
-            publicPath: path.posix.join(PUBLIC_PATH, OUT_JS_PATH),
-            outputPath: OUT_JS_PATH,
-        },
-        {
-            filepath: path.resolve(OUT_DLL_PATH, OUT_STYLE_PATH, "*.css"),
-            publicPath: path.posix.join(PUBLIC_PATH, OUT_STYLE_PATH),
-            outputPath: OUT_STYLE_PATH,
-        },
-    ]),
-];
+try {
+    fs.accessSync(OUT_DLL_PATH);
+    const Dll_JSON = fs
+        .readdirSync(OUT_DLL_PATH)
+        .filter((e) => e.match(/.*\.json$/gi))
+        .map((f) => {
+            return new webpack.DllReferencePlugin({
+                manifest: require(path.resolve(OUT_DLL_PATH, f)),
+            });
+        });
+
+    DLL_PLUGINS = [
+        ...Dll_JSON,
+        new AddAssetHtmlPlugin([
+            {
+                filepath: path.resolve(OUT_DLL_PATH, OUT_JS_PATH, "*.js"),
+                publicPath: path.posix.join(PUBLIC_PATH, OUT_JS_PATH),
+                outputPath: OUT_JS_PATH,
+            },
+            {
+                filepath: path.resolve(OUT_DLL_PATH, OUT_STYLE_PATH, "*.css"),
+                publicPath: path.posix.join(PUBLIC_PATH, OUT_STYLE_PATH),
+                outputPath: OUT_STYLE_PATH,
+            },
+        ]),
+    ];
+} catch (error) {
+    //
+}
+
+exports.DLL_PLUGINS = DLL_PLUGINS;
