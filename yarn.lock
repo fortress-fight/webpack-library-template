@@ -1209,6 +1209,13 @@
   dependencies:
     "@types/node" "*"
 
+"@types/jquery@^3.5.10":
+  version "3.5.10"
+  resolved "https://mirrors.cloud.tencent.com/npm/@types%2fjquery/-/jquery-3.5.10.tgz#9da289f3ec452acd8f7f0375e9e2faad71ebdfe1"
+  integrity sha512-w2qT5DFikh5TXrW/aOaCvCP8g2MMAfPXo3oeHR9v7dRuAZhu38PUWEkYrL4e9VRTcgZE4yER21AHndgpq2QPTQ==
+  dependencies:
+    "@types/sizzle" "*"
+
 "@types/json-schema@*", "@types/json-schema@^7.0.4", "@types/json-schema@^7.0.5", "@types/json-schema@^7.0.8", "@types/json-schema@^7.0.9":
   version "7.0.9"
   resolved "https://mirrors.cloud.tencent.com/npm/@types%2fjson-schema/-/json-schema-7.0.9.tgz#97edc9037ea0c38585320b28964dde3b39e4660d"
@@ -1248,6 +1255,11 @@
   version "0.12.1"
   resolved "http://mirrors.cloud.tencent.com/npm/@types%2fretry/-/retry-0.12.1.tgz#d8f1c0d0dc23afad6dc16a9e993a0865774b4065"
   integrity sha512-xoDlM2S4ortawSWORYqsdU+2rxdh4LRW9ytc3zmT37RIKQh6IHyKwwtKhKis9ah8ol07DCkZxPt8BBvPjC6v4g==
+
+"@types/sizzle@*":
+  version "2.3.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/@types%2fsizzle/-/sizzle-2.3.3.tgz#ff5e2f1902969d305225a047c8a0fd5c915cebef"
+  integrity sha512-JYM8x9EGF163bEyhdJBpR2QX1R5naCJHC8ucJylJ3w9/CVBaskdQ8WqBf8MmQrd1kRvp/a4TS8HJ+bxzR7ZJYQ==
 
 "@typescript-eslint/eslint-plugin@^5.5.0":
   version "5.5.0"
@@ -4443,6 +4455,11 @@ jest-worker@^27.0.6, jest-worker@^27.3.1:
     "@types/node" "*"
     merge-stream "^2.0.0"
     supports-color "^8.0.0"
+
+jquery@^3.6.0:
+  version "3.6.0"
+  resolved "https://mirrors.cloud.tencent.com/npm/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
 
 js-base64@^2.1.9:
   version "2.6.4"

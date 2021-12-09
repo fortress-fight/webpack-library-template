@@ -2,7 +2,7 @@
  * @Description: webpack dll 打包配置
  * @Author: F-Stone
  * @Date: 2021-12-01 15:01:02
- * @LastEditTime: 2021-12-06 17:25:32
+ * @LastEditTime: 2021-12-09 19:02:53
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -20,7 +20,7 @@ const { WEBPACK_DLL_RULES } = require("./rules/webpack-rule-entry");
 module.exports = (env, argv) => {
     return {
         mode: "production",
-        entry: { vendor: ["lodash"] },
+        entry: { vendor: ["jquery"] },
         output: {
             publicPath: PUBLIC_PATH,
             filename: path.posix.join(

@@ -2,7 +2,7 @@
  * @Description: eslint setting
  * @Author: F-Stone
  * @Date: 2021-12-06 23:59:59
- * @LastEditTime: 2021-12-07 01:37:19
+ * @LastEditTime: 2021-12-09 18:42:31
  * @LastEditors: F-Stone
  */
 
@@ -43,5 +43,7 @@ module.exports = {
             },
         },
     ],
-    globals: {},
+    globals: {
+        $: true
+    },
 };

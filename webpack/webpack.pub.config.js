@@ -2,7 +2,7 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-06 14:46:37
+ * @LastEditTime: 2021-12-09 18:42:41
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -43,6 +43,7 @@ module.exports = {
         noParse: [/asset\\plugins\\.+\.js$/, /lodash/],
         rules: WEBPACK_PUB_RULES,
     },
+    externals: { jquery: "jQuery" },
     optimization: {
         runtimeChunk: "single",
         moduleIds: "deterministic",

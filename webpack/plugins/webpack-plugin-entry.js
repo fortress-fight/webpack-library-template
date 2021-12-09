@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-06 17:59:43
+ * @LastEditTime: 2021-12-09 18:43:11
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -54,6 +54,10 @@ exports.WEBPACK_PUB_PLUGINS = [
         emitWarning: false,
         lintDirtyModulesOnly: true,
         threads: USE_THREAD_LOADER,
+    }),
+    new webpack.ProvidePlugin({
+        $: "jquery",
+        jQuery: "jquery",
     }),
 ];
 
