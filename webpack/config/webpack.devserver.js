@@ -2,7 +2,7 @@
  * @Description: webpack server 配置
  * @Author: F-Stone
  * @Date: 2021-12-01 19:36:35
- * @LastEditTime: 2021-12-06 18:10:45
+ * @LastEditTime: 2021-12-16 17:28:41
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -15,7 +15,7 @@ const {
 } = require("./webpack.path");
 
 exports.WEBPACK_DEV_SERVER = {
-    open: true,
+    open: false,
     hot: true,
     compress: true,
     watchFiles: {
@@ -40,7 +40,7 @@ exports.WEBPACK_DEV_SERVER = {
         overlay: { errors: true, warnings: false },
     },
     allowedHosts: "all",
-    historyApiFallback: {
-        rewrites: [{ from: /./, to: "/404.html" }],
-    },
+    // historyApiFallback: {
+    //     rewrites: [{ from: /./, to: "/404.html" }],
+    // },
 };

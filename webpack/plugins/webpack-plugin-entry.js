@@ -2,7 +2,7 @@
  * @Description: webpack-plugin 的入口文件
  * @Author: F-Stone
  * @Date: 2021-12-01 14:50:48
- * @LastEditTime: 2021-12-09 18:43:11
+ * @LastEditTime: 2021-12-16 17:29:11
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -18,7 +18,7 @@ const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const ESLintPlugin = require("eslint-webpack-plugin");
 
 const { name } = require("../../package.json");
-const { HTML_PLUGINS } = require("./webpack-plugin-template");
+// const { HTML_PLUGINS } = require("./webpack-plugin-template");
 const {
     OUT_FILE_PATH,
     ROOT_PATH,
@@ -37,7 +37,7 @@ const { DLL_PLUGINS } = require("./webpack-plugin-dll");
 const { OUT_STYLE_PATH } = OUT_FILE_PATH;
 
 exports.WEBPACK_PUB_PLUGINS = [
-    ...HTML_PLUGINS,
+    // ...HTML_PLUGINS,
     new FriendlyErrorsWebpackPlugin(),
     new WebpackBuildNotifierPlugin({
         title: name,

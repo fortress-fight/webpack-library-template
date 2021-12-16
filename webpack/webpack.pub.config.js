@@ -2,11 +2,11 @@
  * @Description: webpack 开发与生产公用配置文件
  * @Author: F-Stone
  * @Date: 2021-11-30 18:40:01
- * @LastEditTime: 2021-12-09 18:42:41
+ * @LastEditTime: 2021-12-16 17:32:43
  * @LastEditors: F-Stone
  */
 const path = require("path");
-const { HASH_NAME_RULE } = require("./config/webpack.env");
+const { HASH_NAME_RULE, SINGLE_FILE } = require("./config/webpack.env");
 const {
     SRC_PATH,
     OUT_PATH,
@@ -45,10 +45,10 @@ module.exports = {
     },
     externals: { jquery: "jQuery" },
     optimization: {
-        runtimeChunk: "single",
+        runtimeChunk: SINGLE_FILE ? false : "single",
         moduleIds: "deterministic",
         splitChunks: {
-            chunks: "all",
+            chunks:  SINGLE_FILE ? "async": "all",
             name(module, chunks, cacheGroupKey) {
                 let moduleFileName = module
                     .identifier()
