@@ -2,7 +2,7 @@
  * @Description: webpack server 配置
  * @Author: F-Stone
  * @Date: 2021-12-01 19:36:35
- * @LastEditTime: 2021-12-16 17:28:41
+ * @LastEditTime: 2021-12-16 18:01:16
  * @LastEditors: F-Stone
  */
 const path = require("path");
@@ -15,7 +15,7 @@ const {
 } = require("./webpack.path");
 
 exports.WEBPACK_DEV_SERVER = {
-    open: false,
+    open: true,
     hot: true,
     compress: true,
     watchFiles: {
